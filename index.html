@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">    
+    <style>
+        body {
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        
+        .registration-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .btn-reset {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+
+        .btn-reset:hover {
+            background-color: #5c636a;
+            color: white;
+        }
+
+        .success-message {
+            display: none; 
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #495057;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="registration-card">
+        <h2 class="form-title">Event Registration</h2>
+        <form id="registrationForm" novalidate>
+            
+            <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" required>
+                <div class="invalid-feedback">Please enter your first name.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" required>
+                <div class="invalid-feedback">Please enter your last name.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" required>
+                <div class="form-text">We'll never share your email with anyone else.</div>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" pattern="[0-9]+" minlength="10" required>
+                <div class="invalid-feedback">Please enter a valid phone number.</div>
+            </div>
+            
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-primary px-4">Submit</button>
+                <button type="reset" class="btn btn-reset px-4">Reset</button>
+            </div>
+
+            <div id="successMessage" class="success-message">
+                Thanks for registering to the form.
+            </div>
+            
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); 
+            
+            if (!form.checkValidity()) {
+                event.stopPropagation();
+                form.classList.add('was-validated'); 
+                successMessage.style.display = 'none'; 
+            } else {
+                form.classList.remove('was-validated');
+                successMessage.style.display = 'block'; 
+            }
+        });
+
+        form.addEventListener('reset', function () {
+            form.classList.remove('was-validated');
+            successMessage.style.display = 'none'; 
+        });
+    </script>
+</body>
+</html>
