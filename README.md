@@ -1,6 +1,6 @@
-#DevOps Repository
+# DevOps Repository
 
-##List of Experiments:
+## List of Experiments:
 
 1. Write code for a simple user registration form for an event. [DONE]
 2. Explore Git and GitHub commands. [DONE]
